@@ -1,3 +1,4 @@
+import NavBar from '@/components/SideBar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -18,7 +19,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main>
           <div className=''>
-              {children}
+            {children}
           </div>
         </main>
       </body>
