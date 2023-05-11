@@ -25,7 +25,7 @@ const Auth = () => {
                 </div>
                 <div className='flex flex-col gap-4 mt-4'>
                     <h3 className='self-center'>Don't have an account?</h3>
-                    <button className='w-full bg-white p-3 border-[2px] hover:scale-110 duration-150 ease-in-out border-solid rounded-3xl border-[#D9DADC]'>SIGN UP FOR VH WAVE</button>
+                    <button className='w-full bg-white p-3 border-[2px] hover:scale-105 duration-150 ease-in-out border-solid rounded-3xl border-[#D9DADC]'>SIGN UP FOR VH WAVE</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
-import NavBar from "@/components/NavBar"
-import SideBar from "@/components/SideBar"
+import NavBar from "@/components/Navigation/NavBar"
+import SideBar from "@/components/Navigation/SideBar"
 
 export const metadata = {
     title: 'Home',
