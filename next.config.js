@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack: (config) => {
+    config.externals.push('supports-color');
+    return config;
+  },
     images: {
         remotePatterns: [
             {
@@ -16,6 +20,7 @@ const nextConfig = {
             }
           ],
     },
+
     
 }
 

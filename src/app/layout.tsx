@@ -16,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Van_Halen_logo.svg/1280px-Van_Halen_logo.svg.png" />
+      </head>
       <body className={inter.className}>
         <main>
           <div className=''>

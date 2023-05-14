@@ -1,22 +1,26 @@
 import { MdOutlineHome, MdSearch, MdOutlineLibraryMusic } from "react-icons/md";
 
 
-interface NavProps {
+export interface NavProps {
     title: string,
-    element: React.ReactNode
+    element: React.ReactNode,
+    href: string
 }
 
-export const NavConstants: NavProps[] = [
+export const navConstants: NavProps[] = [
     {
         title: 'Home',
-        element: <MdOutlineHome fill="#B3B3B3" className="text-2xl"/>
+        element: <MdOutlineHome fill="#B3B3B3" className="text-2xl"/>,
+        href: '/home'
     },
     {
         title: 'Search',
-        element: <MdSearch fill="#B3B3B3" className="text-2xl"/>
+        element: <MdSearch fill="#B3B3B3" className="text-2xl"/>,
+        href: '/home/search'
     },
     {
         title: 'Library',
-        element: <MdOutlineLibraryMusic fill="#B3B3B3" className="text-2xl"/>
+        element: <MdOutlineLibraryMusic fill="#B3B3B3" className="text-2xl"/>,
+        href: '/home/library'
     }
 ]
