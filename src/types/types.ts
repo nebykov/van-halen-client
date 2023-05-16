@@ -1,5 +1,5 @@
 export interface ITrack {
-    author: IAuthor,
+    author: IUser,
     comments: [],
     trackname: string,
     _id: string,
@@ -10,15 +10,19 @@ export interface ITrack {
 
 
 
-  export interface IAuthor {
+  export interface IUser {
       _id: string,
       email: string,
       password: string,
       createdTracks: ITrack[],
       likedTracks: ITrack[],
       LikedAlbums: [],
-      __v: number,
       roles: string[],
       createdAlbums: [],
       avatar: string
+  }
+
+
+  export interface UserResponse {
+    token: string
   }
