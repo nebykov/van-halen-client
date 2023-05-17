@@ -24,3 +24,10 @@ export const navConstants: NavProps[] = [
         href: '/home/library'
     }
 ]
+
+
+export enum defaultImage{
+    TRACK = 'http://localhost:3000/defaultaudiopic.png',
+    USER = 'http://localhost:3000/usericon.png'
+    
+}

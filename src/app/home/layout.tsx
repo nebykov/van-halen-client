@@ -1,5 +1,6 @@
 import NavBar from "@/components/Navigation/NavBar"
 import SideBar from "@/components/Navigation/SideBar"
+import Player from "@/components/Player/Player"
 
 export const metadata = {
     title: 'Home',
@@ -17,6 +18,7 @@ export default function HomeLayout({
                 <SideBar/>
                 <div className="sticky top-0"><NavBar/></div>
                 <div className="ml-[241px]">{children}</div>
+                <Player />
             </main>
         </section>
     )

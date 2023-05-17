@@ -14,12 +14,13 @@ export interface ITrack {
       _id: string,
       email: string,
       password: string,
-      createdTracks: ITrack[],
-      likedTracks: ITrack[],
+      createdTracks: [],
+      likedTracks: [string],
       LikedAlbums: [],
       roles: string[],
       createdAlbums: [],
-      avatar: string
+      avatar: string,
+      username?: string
   }
 
 
