@@ -2,25 +2,56 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { useAppSelector } from '@/hooks/useRedux'
+import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import { defaultImage } from '@/utils/constants'
 import { useImage } from '@/hooks/useImage'
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
+import { useQuery } from '@tanstack/react-query'
+import { removeTrackFromFav, trackToFav } from '@/utils/api/userApi'
+import { setUser } from '@/store/actions/userReducer'
 
 const Player: React.FC = () => {
     const { track } = useAppSelector(state => state.track)
     const { user } = useAppSelector(state => state.user)
+    const [isFavorite, setIsFavorite] = React.useState(false)
+    const dispatch = useAppDispatch()
+
+    React.useEffect(() => {
+        const favData = track?._id && user?.likedTracks.includes(track?._id)
+        setIsFavorite(favData || false)
+    }, [track])
+
+
+    const { data: userLike, refetch: refetchLike } = useQuery({
+        queryKey: ['userLike'],
+        queryFn: () => trackToFav(track?._id || ''),
+        refetchOnWindowFocus: false,
+        enabled: false,
+    })
+
+
+    const { data: userDis, refetch: refetchDislike } = useQuery({
+        queryKey: ['userLike'],
+        queryFn: () => removeTrackFromFav(track?._id || ''),
+        refetchOnWindowFocus: false,
+        enabled: false,
+    })
+
     const image = useImage(track?.picture, defaultImage.TRACK)
-    const isFavorite = track?._id && user?.likedTracks.includes(track?._id)
+
 
     const handleFavorite = async () => {
-            if(track?._id) {
-                if (isFavorite) {
-                    console.log('Убрано из')
-                 } else {
-                      console.log('Добавлено в')
-                 }
+        if (track?._id) {
+            if (isFavorite) {
+                refetchDislike()
+                dispatch(setUser(userDis))
+                setIsFavorite(false)
+            } else {
+                refetchLike()
+                dispatch(setUser(userLike))
+                setIsFavorite(true)
             }
+        }
     }
 
     return (
@@ -35,9 +66,9 @@ const Player: React.FC = () => {
                         </div>
                         <span className='flex items-center ml-3'>
                             {isFavorite ?
-                                <MdFavorite className='text-2xl fill-red-700 hover:scale-110 cursor-pointer active:scale-100' onClick={handleFavorite}/>
+                                <MdFavorite className='text-2xl fill-red-700 hover:scale-110 cursor-pointer active:scale-100' onClick={handleFavorite} />
                                 :
-                                <MdFavoriteBorder className='text-2xl fill-red-700 hover:scale-110 cursor-pointer active:scale-100' onClick={handleFavorite}/>
+                                <MdFavoriteBorder className='text-2xl fill-red-700 hover:scale-110 cursor-pointer active:scale-100' onClick={handleFavorite} />
                             }
 
                         </span>

@@ -11,7 +11,6 @@ import { setUser } from '@/store/actions/userReducer'
 
 
 export default function HomePage() {
-    const { isAuth } = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
     const { isLoading ,data: userRes, error} = useQuery(
         {
