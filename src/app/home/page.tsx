@@ -13,15 +13,21 @@ import { setUser } from '@/store/actions/userReducer'
 export default function HomePage() {
     const { isAuth } = useAppSelector(state => state.user)
     const dispatch = useAppDispatch()
-    const { isLoading, data: userRes, error } = useQuery({ queryKey: ['user'], queryFn: auth })
+    const { isLoading ,data: userRes, error} = useQuery(
+        {
+            queryKey: ['user'],
+            queryFn: auth,
+            onSuccess: () => {
+                dispatch(setUser(userRes?.user));
+            },
+        })
 
 
-    if (!isLoading) {
-        dispatch(setUser(userRes.user))
-        if (!isAuth) {
+        if (error) {
             redirect('/auth')
         }
-    }
+    
+
 
     const { data: tracks } = useQuery({ queryKey: ['tracks'], queryFn: getTracks })
 

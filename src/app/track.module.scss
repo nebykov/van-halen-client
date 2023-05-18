@@ -1,0 +1,33 @@
+
+
+
+.trackItem {
+    @apply flex hover:bg-[#282828] min-w-[480px] max-w-[580px] rounded-md overflow-hidden cursor-pointer duration-150;
+
+    &:hover .playIconContainer {
+        @apply scale-100;
+    }
+
+    .playIconContainer {
+        @apply self-center justify-self-end mr-4 duration-150;
+
+        .active {
+            @apply scale-100
+        }
+    
+        .playIcon {
+            @apply active:scale-95 text-5xl;
+
+            &:hover {
+                @apply scale-110
+            }
+
+            &:active {
+                @apply scale-100
+            }
+        }
+    
+    }
+}
+
+
