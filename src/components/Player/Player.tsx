@@ -5,10 +5,12 @@ import Image from 'next/image'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import { defaultImage } from '@/utils/constants'
 import { useImage } from '@/hooks/useImage'
-import { MdFavorite, MdFavoriteBorder } from 'react-icons/md'
+import { MdFavorite, MdFavoriteBorder, MdOutlineVolumeUp } from 'react-icons/md'
 import { useQuery } from '@tanstack/react-query'
 import { removeTrackFromFav, trackToFav } from '@/utils/api/userApi'
 import { setUser } from '@/store/actions/userReducer'
+import TrackProgress from './TrackProgress'
+import TrackNav from './TrackNav'
 
 const Player: React.FC = () => {
     const { track } = useAppSelector(state => state.track)
@@ -57,8 +59,8 @@ const Player: React.FC = () => {
     return (
         <>
             {track &&
-                <div className='w-screen h-20 fixed bottom-0 bg-black z-20'>
-                    <div className='flex self-start w-[30%]'>
+                <div className='w-screen h-20 fixed bottom-0 bg-black z-20 flex justify-between'>
+                    <div className='flex self-start'>
                         <Image priority src={image.image} onError={image.handleError} className='p-2' width={80} height={80} alt='audio picture' />
                         <div className='flex flex-col justify-center ml-1'>
                             <span className='text-white'>{track?.trackname}</span>
@@ -73,8 +75,13 @@ const Player: React.FC = () => {
 
                         </span>
                     </div>
-                    <div></div>
-                    <div></div>
+                    <div className='justify-self-center items-center flex-col'>
+                        <TrackNav/>
+                        <TrackProgress width='w-[400px]' left={0} right={500}/>
+                    </div>
+                    <div className='mr-8 flex flex-row justify-center'>
+                        <TrackProgress width='w-[100px]' left={0} right={100} volume/>
+                    </div>
                 </div>}
 
         </>
