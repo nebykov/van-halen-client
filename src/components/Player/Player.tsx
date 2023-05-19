@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import TrackProgress from './TrackNav/TrackProgress'
 import TrackNav from './TrackNav/TrackNav'
 import TrackControl from './TrackControl/TrackControl'
-import { setCurrentTime, setDuration, setPause, setVolume } from '@/store/actions/tracksReducer'
+import { pauseTrack, playTrack, setCurrentTime, setDuration, setPause, setVolume } from '@/store/actions/tracksReducer'
 
 let audio: any;
 
@@ -15,12 +15,23 @@ const Player: React.FC = () => {
     const dispatch = useAppDispatch()
 
     React.useEffect(() => {
-         audio = new Audio()
-         setAudio()
-         return () => {
+            audio = new Audio()
+            setAudio()
+            handlePause()
+
+            return () => {
+            dispatch(setPause(true))
             audio = null
          }
     }, [track])
+
+    React.useEffect(() => {
+        if (!pause) {
+            audio.play()
+       } else {
+            audio.pause()
+       }
+    }, [pause])
 
 
     const setAudio = () => {
@@ -39,13 +50,14 @@ const Player: React.FC = () => {
     }
 
     const handlePause = () => {
-             if (pause) {
-                  dispatch(setPause(false))
-                  audio.play()
-             } else {
-                  dispatch(setPause(true))
-                  audio.pause()
-             } 
+                if (pause) {
+                    dispatch(playTrack())
+                    audio.play()
+               } else {
+                    dispatch(pauseTrack())
+                    audio.pause()
+               }
+             
     }
 
 
@@ -65,7 +77,7 @@ const Player: React.FC = () => {
                 <div className='w-screen h-20 fixed bottom-0 bg-black z-20 flex justify-between'>
                     <TrackControl track={track} />
                     <div className='justify-self-center items-center flex-col'>
-                        <TrackNav pause={pause} handlePause={handlePause} isLoading={isLoading}/>
+                        <TrackNav handlePause={handlePause} isLoading={isLoading}/>
                         <TrackProgress width='w-[400px]' left={currentTime} right={duration} onVolume={(e) => changeCurrentTime(e)}/>
                     </div>
                     <div className='mr-8 flex flex-row justify-center'>

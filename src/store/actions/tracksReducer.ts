@@ -37,11 +37,17 @@ export const trackSlice = createSlice({
         },
         setCurrentTime: (state, action: PayloadAction<number>) => {
             state.currentTime = action.payload
+        },
+        playTrack: (state) => {
+            state.pause = false
+        },
+        pauseTrack: (state) => {
+            state.pause = true
         }
 
     }
 })
 
-export const { setCurrentTime, setDuration, setPause, setTrack, setVolume } = trackSlice.actions
+export const { setCurrentTime, setDuration, setPause, setTrack, setVolume, playTrack, pauseTrack } = trackSlice.actions
 
 export default trackSlice.reducer

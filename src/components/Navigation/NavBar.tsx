@@ -11,7 +11,7 @@ const NavBar: React.FC = () => {
   const {user, isAuth} = useAppSelector(state => state.user)
   
   return (
-    <header className="h-20 w-full bg-[#181818] sticky z-10" onClick={() => setActive(false)}>
+    <header className="h-20 w-full bg-[#181818] z-10" onClick={() => setActive(false)}>
       <nav className={styles.homeNav}>
         <MdKeyboardArrowLeft fill="white"
           className={styles.homeNav__arrows} />

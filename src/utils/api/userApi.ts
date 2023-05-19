@@ -21,7 +21,7 @@ export async function auth() {
         return data
     } catch (e) {
         localStorage.removeItem('token')
-        alert('Auth Error ' + e)
+        return {e}
     }
 }
 

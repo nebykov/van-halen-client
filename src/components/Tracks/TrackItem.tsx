@@ -6,7 +6,7 @@ import styles from '../../app/track.module.scss'
 import { useImage } from '@/hooks/useImage'
 import { defaultImage } from '@/utils/constants'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { setPause, setTrack } from '@/store/actions/tracksReducer'
+import { pauseTrack, playTrack, setPause, setTrack } from '@/store/actions/tracksReducer'
 
 
 interface TrackItemProps {
@@ -19,16 +19,23 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   const {track: activeTrack, pause} = useAppSelector(state => state.track)
   const dispatch = useAppDispatch()
 
-  const handleTrack = () => {
-    dispatch(setTrack(track))
+  const handleTrack = (value: ITrack) => {
+    dispatch(setTrack(value))
+    dispatch(playTrack())
   }
 
-  const handlePause = (action: boolean) => {
-    dispatch(setPause(action))
+  const handlePause = (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
+      if (pause) {
+        activeTrack !== track && dispatch(setTrack(track))
+        dispatch(playTrack())
+      }  else {
+        dispatch(pauseTrack())
+      }
   }
 
   return (
-    <article className={ `${styles.trackItem} ${activeTrack !== track? 'bg-[#181818]' : 'bg-[#242424]'}`} onClick={handleTrack}>
+    <article className={ `${styles.trackItem} ${activeTrack !== track? 'bg-[#181818]' : 'bg-[#242424]'}`} onClick={() => handleTrack(track)}>
        <div className='flex gap-4 w-full'>
        <Image priority src={image.image} onError={image.handleError} width={80} height={80} alt='audio picture'/>
         <div className='flex flex-col text-white self-center'>
@@ -36,14 +43,14 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
             <span className=''>{track.author.email}</span>
         </div>
        </div>
-       <div className={`${styles.playIconContainer} ${activeTrack === track? 'scale-100' : 'scale-0'}`}>
+       <div className={`${styles.playIconContainer} ${activeTrack === track? 'scale-100' : 'scale-0'}`} onClick={(e) => handlePause(e)}>
         {activeTrack === track && !pause?
-         <MdPause fill='white' className={styles.playIcon} onClick={() => handlePause(false)}/>
+         <MdPause fill='white' className={styles.playIcon}/>
          :
          activeTrack === track && pause?
-         <MdPlayArrow fill='white' className={styles.playIcon} onClick={() => handlePause(true)}/>
+         <MdPlayArrow fill='white' className={styles.playIcon}/>
          :
-         <MdPlayArrow fill='white' className={styles.playIcon} onClick={() => handlePause(true)}/>}
+         <MdPlayArrow fill='white' className={styles.playIcon}/>}
        </div>
     </article>
   )
