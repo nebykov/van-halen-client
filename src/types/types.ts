@@ -27,3 +27,9 @@ export interface ITrack {
   export interface UserResponse {
     token: string
   }
+
+
+  export interface IGlovalSearch {
+    author: IUser | null;
+    tracks: ITrack[];
+  }
