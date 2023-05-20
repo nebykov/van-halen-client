@@ -15,7 +15,7 @@ export default function HomeLayout({
     return (
         <section>
             <main>
-                <div>{children}</div>
+                <div className="bg-[#181818] min-h-screen">{children}</div>
             </main>
         </section>
     )

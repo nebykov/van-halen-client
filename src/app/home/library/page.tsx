@@ -1,9 +1,14 @@
-import React from 'react'
+'use client'
+
+import { useRouter } from 'next/navigation'
 
 const Search = () => {
+  const router = useRouter()
   return (
     <div className='bg-[#181818] min-h-screen'>
-      <input className=' bg-[#242424] w-[450px] placeholder:text-[13px] ml-[28px] h-8 p-5 outline-none focus:outline-slate-400 hover:outline-slate-700 rounded-3xl' placeholder='What Do You Want To Listen To?' />
+       <div onClick={() => router.push('/home/library/favorite')} className='group/item w-40 h-40 bg-black ml-[28px] rounded-md flex justify-center items-center cursor-pointer'>
+        <h3 className='text-white font-bold group-hover/item:scale-125 duration-200'>Favorite</h3>
+       </div>
     </div>
   )
 }
