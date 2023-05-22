@@ -4,11 +4,14 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import styles from '../../app/index.module.scss'
 import React from "react";
 import { useAppSelector } from "@/hooks/useRedux";
+import { redirect } from 'next/navigation';
 
 
 const NavBar: React.FC = () => {
   const [active, setActive] = React.useState(false)
   const {user, isAuth} = useAppSelector(state => state.user)
+
+
   
   return (
     <header className="h-20 w-full bg-[#181818] z-10" onClick={() => setActive(false)}>

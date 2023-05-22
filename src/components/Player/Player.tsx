@@ -6,6 +6,7 @@ import TrackProgress from './TrackNav/TrackProgress'
 import TrackNav from './TrackNav/TrackNav'
 import TrackControl from './TrackControl/TrackControl'
 import { pauseTrack, playTrack, setCurrentTime, setDuration, setPause, setVolume } from '@/store/actions/tracksReducer'
+import { formatTime } from '@/utils/api/formatTime'
 
 let audio: any;
 
@@ -15,14 +16,19 @@ const Player: React.FC = () => {
     const dispatch = useAppDispatch()
 
     React.useEffect(() => {
-            audio = new Audio()
-            setAudio()
-            handlePause()
+        audio = new Audio()
+             if (track) {
+                setAudio()
+                handlePause()
+             }
 
-            return () => {
-            dispatch(setPause(true))
-            audio = null
-         }
+             return () => {
+                dispatch(setPause(true))
+                if (audio) {
+                    audio.pause();
+                  }
+                audio = null
+             }
     }, [track])
 
     React.useEffect(() => {

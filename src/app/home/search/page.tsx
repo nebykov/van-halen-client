@@ -24,8 +24,6 @@ const Search = () => {
               const { author, tracks } = result;
               setAuthorResult(author)
               setTracksResult(tracks)
-              console.log('Автор:', authorResult);
-              console.log('Песни:', tracksResult);
             })
             .catch((error) => {
               console.error('Ошибка поиска:', error);
@@ -43,7 +41,7 @@ const Search = () => {
         setTracksResult([])
         setIsLoading(false)
       }
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [query]);

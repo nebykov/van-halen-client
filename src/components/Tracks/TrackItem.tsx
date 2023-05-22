@@ -20,14 +20,15 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   const dispatch = useAppDispatch()
 
   const handleTrack = (value: ITrack) => {
-    dispatch(setTrack(value))
-    dispatch(playTrack())
+    if (activeTrack !== value) {
+      dispatch(setTrack(value))
+    }
   }
 
   const handlePause = (e: React.MouseEvent<HTMLDivElement>) => {
+    activeTrack !== track && dispatch(setTrack(track))
       e.stopPropagation()
       if (pause) {
-        activeTrack !== track && dispatch(setTrack(track))
         dispatch(playTrack())
       }  else {
         dispatch(pauseTrack())

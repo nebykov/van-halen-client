@@ -4,7 +4,8 @@ export interface ITrack {
     trackname: string,
     _id: string,
     picture: string,
-    audio: string
+    audio: string,
+    date: string
   
   }
 

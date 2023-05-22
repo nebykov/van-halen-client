@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../../../app/player.module.scss'
 import { MdOutlineVolumeUp } from 'react-icons/md'
+import { formatTime } from '@/utils/api/formatTime'
 
 interface TrackProgresProps {
     width: string,
@@ -11,10 +12,12 @@ interface TrackProgresProps {
 }
 
 const TrackProgress: React.FC<TrackProgresProps> = ({ width, left, right, isVolume, onVolume}) => {
+    const formatTimeLeft = formatTime(left)
+    const formatTimeRight = formatTime(right)
     return (
         <div className={`text-white flex items-center gap-1 ${width}`}>
             {isVolume && <MdOutlineVolumeUp fill='white' className='text-2xl' />}
-            {!isVolume && <span>{left}</span>}
+            {!isVolume && <span>{formatTimeLeft.formattedMinutes}:{formatTimeLeft.formattedSeconds}</span>}
             <input
                 type="range"
                 min={0} 
@@ -22,7 +25,7 @@ const TrackProgress: React.FC<TrackProgresProps> = ({ width, left, right, isVolu
                 value={left}
                 onChange={onVolume}
                 className={styles.trackProgress} />
-            {!isVolume && <span>{right}</span>}
+            {!isVolume && <span>{formatTimeRight.formattedMinutes}:{formatTimeRight.formattedSeconds}</span>}
         </div>
     )
 }

@@ -20,18 +20,11 @@ export default function HomePage() {
             onSuccess: () => {
                 dispatch(setUser(userRes?.user));
             },
-            onError(err) {
-                redirect('/auth')
-            },
         })
 
 
-        if (error) {
-            redirect('/auth')
-        }
-
-
-        if (!isLoading && !isAuth) {
+        if (!isAuth || error) {
+            console.log('error', error)
             redirect('/auth')
         }
     
