@@ -9,16 +9,16 @@ import React from 'react'
 
 export default async function FavoritePage() {
   const { user } = useAppSelector(state => state.user)
-  const tracks = user && await getFavoriteTracks(user?._id)
-
+  // const tracks = user && await getFavoriteTracks(user?._id)
   return (
     <>
-      {user && tracks &&
+    <h1>Logo</h1>
+      {/* {user && tracks &&
         <div className="mx-[28px]">
           <AlbumHead user={user} userPage={false} title='Favorite Songs'/>
           <AlbumTrackList tracks={tracks}/>
         </div>
-      }
+      } */}
     </>
   )
 }

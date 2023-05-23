@@ -15,9 +15,8 @@ export default function HomeLayout({
     return (
         <section>
             <main>
-                <SideBar/>
-                <div className="sticky top-0"><NavBar/></div>
-                <div className="ml-[241px]">{children}</div>
+                <header className="sticky top-0"><NavBar/></header>
+                <section>{children}</section>
                 <Player />
             </main>
         </section>
