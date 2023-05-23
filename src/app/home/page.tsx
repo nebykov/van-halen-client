@@ -24,7 +24,7 @@ export default function HomePage() {
 
 
         if (!isAuth || error) {
-            console.log('error', error)
+           error && console.log('error', error);
             redirect('/auth')
         }
     

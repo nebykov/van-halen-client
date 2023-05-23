@@ -1,9 +1,11 @@
-import React from 'react'
+'use client'
+
 import AlbumTrackItem from './AlbumTrackItem'
 import { ITrack } from '@/types/types'
 
+
 interface AlbumTrackListProps {
-    tracks: ITrack[]
+    tracks: ITrack[],
 }
 
 
@@ -21,7 +23,7 @@ const AlbumTrackList: React.FC<AlbumTrackListProps> = ({tracks}) => {
                     <div className='col-start-5'>liked</div>
                 </div>
             </div>
-            {tracks.map((track, index) => (
+            {tracks?.map((track, index) => (
                 <AlbumTrackItem key={track._id} index={index+1} track={track}/>
             ))}
         </div>
