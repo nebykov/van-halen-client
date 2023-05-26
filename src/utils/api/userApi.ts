@@ -1,27 +1,30 @@
-import axios from "axios";
+import { IApiRequestUser } from "@/types/types";
+import axios, { AxiosError } from "axios";
 
 
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<IApiRequestUser> {
     try {
         const { data } = await axios.post('http://localhost:5000/auth/login', { email: email, password: password })
         localStorage.setItem('token', data.token)
         return data
-    } catch (e) {
+    } catch (error) {
         localStorage.removeItem('token')
+        throw error
     }
 }
 
 
-export async function auth() {
+export async function auth(): Promise<IApiRequestUser> {
     try {
-        const { data } = await axios.get('http://localhost:5000/auth', {
+        const { data } = await axios.get<IApiRequestUser>('http://localhost:5000/auth', {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        })
-        localStorage.setItem('token', data.token)
-        return data
-    } catch (e) {
-        localStorage.removeItem('token')
-        return {e}
+        });
+
+        localStorage.setItem('token', data.token);
+        return data;
+    } catch (error) {
+        localStorage.removeItem('token');
+        throw error;
     }
 }
 

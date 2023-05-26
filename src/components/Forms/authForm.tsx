@@ -1,10 +1,11 @@
 'use client'
 
+import React from 'react'
 import Input from '@/components/Forms/Input/Input';
 import { useInput } from '@/hooks/useInput';
 import { useAppDispatch } from '@/hooks/useRedux';
 import { setUser } from '@/store/actions/userReducer';
-import { login } from '@/utils/api/userApi';
+import { login } from '@/utils/api/userApi'
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -22,6 +23,7 @@ const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => 
     const username = useInput('')
     const email = useInput('')
     const password = useInput('')
+    const [errorMessage, setErrorMessage] = React.useState('')
 
 
     const loginSubmit = async () => {
@@ -29,11 +31,16 @@ const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => 
             if (registration) {
 
             } else {
-                const res: any = await login(email.value, password.value)
-                  dispatch(setUser(res?.user))
-                  router.push('/home')
+                login(email.value, password.value)
+                .then((data) => {
+                    dispatch(setUser(data.user))
+                    router.push('/home')
+                })
+                .catch(e => setErrorMessage(e.response.data.message))
             }
-        }
+        } else {
+            setErrorMessage('Email and Password are required!')
+        }   
     }
 
     return (
@@ -50,6 +57,7 @@ const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => 
             <Input placeholder='Enter Your Email' type='text' value={email.value} onChange={email.onChange} />
             <h3 className={`ml-4 font-bold text-xs`}>Email address or username</h3>
             <Input placeholder='Password' type='password' value={password.value} onChange={password.onChange} />
+            {errorMessage && <span className='self-end text-red-700 font-semibold text-lg'>{errorMessage}</span>}
             <button onClick={loginSubmit} className='self-end bg-violet-700 h-12 w-28 rounded-3xl hover:scale-110 duration-150 ease-in-out text-white mb-4 active:scale-100'>{submitTitle}</button>
         </div>
     )

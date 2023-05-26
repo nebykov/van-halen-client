@@ -10,6 +10,13 @@ import React from 'react'
 export default async function FavoritePage() {
   const { user } = useAppSelector(state => state.user)
   // const tracks = user && await getFavoriteTracks(user?._id)
+
+  // React.useEffect(() => {
+  //   if(user) {
+  //     getFavoriteTracks(user._id)
+  //     .then(data => console.log(data))
+  //   }
+  // },[])
   return (
     <>
     <h1>Logo</h1>

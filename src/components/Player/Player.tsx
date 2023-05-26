@@ -6,7 +6,7 @@ import TrackProgress from './TrackNav/TrackProgress'
 import TrackNav from './TrackNav/TrackNav'
 import TrackControl from './TrackControl/TrackControl'
 import { pauseTrack, playTrack, setCurrentTime, setDuration, setPause, setVolume } from '@/store/actions/tracksReducer'
-import { formatTime } from '@/utils/api/formatTime'
+import { formatTime } from '@/utils/formatTime'
 
 let audio: any;
 

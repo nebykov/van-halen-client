@@ -34,3 +34,9 @@ export interface ITrack {
     author: IUser | null;
     tracks: ITrack[];
   }
+
+
+  export interface IApiRequestUser {
+    token: string,
+    user: IUser
+  }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../../app/player.module.scss'
 import { MdOutlineVolumeUp } from 'react-icons/md'
-import { formatTime } from '@/utils/api/formatTime'
+import { formatTime } from '@/utils/formatTime'
 
 interface TrackProgresProps {
     width: string,
