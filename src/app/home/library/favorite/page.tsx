@@ -3,29 +3,30 @@
 import AlbumHead from '@/components/Album/AlbumHead'
 import AlbumTrackList from '@/components/Album/AlbumTrackList'
 import { useAppSelector } from '@/hooks/useRedux'
-import { getFavoriteTracks } from '@/utils/api/getTracks'
+import { ITrack } from '@/types/types'
+import { getFavoriteTracks } from '@/utils/api/trackApi'
 import React from 'react'
 
 
-export default async function FavoritePage() {
+export default function FavoritePage() {
   const { user } = useAppSelector(state => state.user)
-  // const tracks = user && await getFavoriteTracks(user?._id)
+  const [tracks, setTracks] = React.useState<ITrack[]>([])
 
-  // React.useEffect(() => {
-  //   if(user) {
-  //     getFavoriteTracks(user._id)
-  //     .then(data => console.log(data))
-  //   }
-  // },[])
+  React.useEffect(() => {
+    console.log('Ochko')
+    if(user !== null) {
+      getFavoriteTracks(user._id)
+      .then(data => setTracks(data))
+    }
+  },[user])
   return (
     <>
-    <h1>Logo</h1>
-      {/* {user && tracks &&
+      {user && tracks.length &&
         <div className="mx-[28px]">
           <AlbumHead user={user} userPage={false} title='Favorite Songs'/>
           <AlbumTrackList tracks={tracks}/>
         </div>
-      } */}
+      }
     </>
   )
 }

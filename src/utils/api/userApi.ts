@@ -14,6 +14,7 @@ export async function login(email: string, password: string): Promise<IApiReques
 }
 
 
+
 export async function auth(): Promise<IApiRequestUser> {
     try {
         const { data } = await axios.get<IApiRequestUser>('http://localhost:5000/auth', {

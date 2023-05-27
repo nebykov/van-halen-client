@@ -1,7 +1,10 @@
 import { useImage } from '@/hooks/useImage'
+import { useAppDispatch } from '@/hooks/useRedux'
+import { logoutUser } from '@/store/actions/userReducer'
 import { IUser } from '@/types/types'
 import { defaultImage } from '@/utils/constants'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 interface NavUserSectionProps {
@@ -11,8 +14,15 @@ interface NavUserSectionProps {
 }
 
 const NavUserSection: React.FC<NavUserSectionProps> = ({ active, onActive, user}) => {
+    const router = useRouter()
     const imgSrc = useImage(user?.avatar, defaultImage.USER)
     const isAuthor = user && user?.roles?.includes('AUTHOR')
+    const dispatch = useAppDispatch()
+
+    const logout = () => {
+        dispatch(logoutUser())
+        router.push('/auth')
+    }
 
     return (
         <div className="absolute right-0 mr-7">
@@ -30,7 +40,7 @@ const NavUserSection: React.FC<NavUserSectionProps> = ({ active, onActive, user}
                         <li className="hover:bg-slate-400 cursor-pointer rounded-lg p-1 mt-1">Account</li>
                     </Link>
                     <li className="hover:bg-slate-400 cursor-pointer rounded-lg p-1">{!isAuthor ? 'Become a Creator' : 'Create new Track'}</li>
-                    <li className="mt-3 border-t-[1px]  hover:bg-slate-400 cursor-pointer rounded-lg p-1">Log out</li>
+                    <li className="mt-3 border-t-[1px]  hover:bg-slate-400 cursor-pointer rounded-lg p-1" onClick={logout}>Log out</li>
                 </ul>
             </div>}
         </div>

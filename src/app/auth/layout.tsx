@@ -13,6 +13,9 @@ export default function AuthLayout({
     return (
         <section>
             <main>
+            <header className={`flex items-center justify-center h-20 bg-white border-b-[1px] border-solid border-b-[#D9DADC]`}>
+                <h1 className="font-bold text-2xl">Van Halen Wave</h1>
+            </header>
                 {children}
             </main>
         </section>

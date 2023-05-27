@@ -10,10 +10,8 @@ const Auth = () => {
 
     return (
         <section>
-            <div className={`flex items-center justify-center h-20 bg-white border-b-[1px] border-solid border-b-[#D9DADC]`}>
-                <h1 className="font-bold text-2xl">Van Halen Wave</h1>
-            </div>
             <div className='w-[450px] m-auto'>
+            <img src='http://localhost:3000/van-halen.png' alt='Logo' height={44} width={450} className='mt-5' />
                   <AuthForm title='Authorization' submitTitle='Log In'/>
                 <div className='flex flex-col gap-4 mt-4'>
                     <h3 className='self-center'>Don't have an account?</h3>

@@ -6,15 +6,16 @@ import { useInput } from '@/hooks/useInput';
 import { useAppDispatch } from '@/hooks/useRedux';
 import { setUser } from '@/store/actions/userReducer';
 import { login } from '@/utils/api/userApi'
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import SubmitButton from './SubmitButton';
 
 
 
 interface AuthProps {
     title: string,
     submitTitle: string,
-    registration?: boolean
+    registration?: boolean,
+    onStep?: () => void
 }
 
 const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => {
@@ -29,7 +30,7 @@ const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => 
     const loginSubmit = async () => {
         if (email.value !== '' && password.value !== '') {
             if (registration) {
-
+                 
             } else {
                 login(email.value, password.value)
                 .then((data) => {
@@ -44,8 +45,7 @@ const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => 
     }
 
     return (
-        <div className='flex flex-col items-start gap-4 border-b-[1px] border-solid border-b-[#D9DADC] mt-10'>
-            <Image src='http://localhost:3000/van-halen.png' alt='Logo' height={44} width={450} />
+        <div className='flex flex-col items-start gap-4 border-b-[1px] border-solid border-b-[#D9DADC]'>
             <h1 className='mt-4 mb-2 m-auto p-1 font-bold text-3xl border-b-[1px] border-solid border-black'>{title}</h1>
             {registration &&
                 <>
@@ -58,7 +58,7 @@ const AuthForm: React.FC<AuthProps> = ({ title, submitTitle, registration }) => 
             <h3 className={`ml-4 font-bold text-xs`}>Email address or username</h3>
             <Input placeholder='Password' type='password' value={password.value} onChange={password.onChange} />
             {errorMessage && <span className='self-end text-red-700 font-semibold text-lg'>{errorMessage}</span>}
-            <button onClick={loginSubmit} className='self-end bg-violet-700 h-12 w-28 rounded-3xl hover:scale-110 duration-150 ease-in-out text-white mb-4 active:scale-100'>{submitTitle}</button>
+            <SubmitButton onSubmit={loginSubmit} submitTitle={submitTitle}/>
         </div>
     )
 }
