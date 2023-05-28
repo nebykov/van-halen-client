@@ -2,6 +2,7 @@ import { useImage } from '@/hooks/useImage'
 import { useAppDispatch } from '@/hooks/useRedux'
 import { logoutUser } from '@/store/actions/userReducer'
 import { IUser } from '@/types/types'
+import { becomeCreator } from '@/utils/api/userApi'
 import { defaultImage } from '@/utils/constants'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -24,6 +25,13 @@ const NavUserSection: React.FC<NavUserSectionProps> = ({ active, onActive, user}
         router.push('/auth')
     }
 
+    const handleBecomeCreator = () => {
+        if (!isAuthor) {
+            becomeCreator(user._id).then(data => console.log(data))
+        }
+        router.push('/auth/create/track')
+    }
+
     return (
         <div className="absolute right-0 mr-7">
             <img src={imgSrc.image} onError={imgSrc.handleError} alt="" className="w-8 h-8 rounded-full cursor-pointer"
@@ -39,7 +47,8 @@ const NavUserSection: React.FC<NavUserSectionProps> = ({ active, onActive, user}
                     <Link href={`/home/author/${user?._id}`}>
                         <li className="hover:bg-slate-400 cursor-pointer rounded-lg p-1 mt-1">Account</li>
                     </Link>
-                    <li className="hover:bg-slate-400 cursor-pointer rounded-lg p-1">{!isAuthor ? 'Become a Creator' : 'Create new Track'}</li>
+                    <li onClick={handleBecomeCreator} className="hover:bg-slate-400 cursor-pointer rounded-lg p-1">{!isAuthor ? 'Become a Creator' : 'Create new Track'}</li>
+                    <li className="hover:bg-slate-400 cursor-pointer rounded-lg p-1">Change Avatar</li>
                     <li className="mt-3 border-t-[1px]  hover:bg-slate-400 cursor-pointer rounded-lg p-1" onClick={logout}>Log out</li>
                 </ul>
             </div>}

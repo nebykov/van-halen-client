@@ -21,10 +21,10 @@ const NavControl = () => {
         }
       }
     return (
-        <div className='my-0 mx-auto'>
+        <div className='my-0 mx-auto self-center'>
             <ul className='flex gap-2'>
                 {navConstants.map(({ title, element, href }) => (
-                    <Link href={href}>
+                    <Link key={title} href={href}>
                     <SideButton key={title} title={title} selected={selectedButton} onSetButton={() => selectHandler(title)}>
                         {element}
                     </SideButton>

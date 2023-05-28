@@ -14,21 +14,25 @@ const NavBar: React.FC = () => {
   const [active, setActive] = React.useState(false)
   const [error, setError] = React.useState(false)
   const [isLoading, setIsLoading] = React.useState(false)
-  const { user } = useAppSelector(state => state.user)
+  const { user, isAuth } = useAppSelector(state => state.user)
 
 
     React.useEffect(() => {
       setIsLoading(true)
-      auth()
-      .then(data => {
-        setIsLoading(false)
-        if(!user) {
-          dispatch(setUser(data.user))
+        if (!isAuth) {
+          auth()
+          .then(data => {
+            setIsLoading(false)
+            if(!user) {
+              dispatch(setUser(data.user))
+            }
+          })
+          .catch(e => {
+            setError(true)
+            alert(`error ${e}`)})
         }
-      })
-      .catch(e => {
-        setError(true)
-        alert(`error ${e}`)})
+
+        setIsLoading(false)
     }, [])
 
     if (error === true) redirect('/auth')

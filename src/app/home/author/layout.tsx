@@ -10,7 +10,7 @@ export default function HomeLayout({
     return (
         <section>
             <main>
-                <div className="bg-[#181818] min-h-screen">{children}</div>
+                <div className="bg-[#181818] min-h-[calc(100vh-80px)]">{children}</div>
             </main>
         </section>
     )

@@ -5,9 +5,9 @@ import Input from '@/components/Forms/Input/Input';
 import { useInput } from '@/hooks/useInput';
 import { useAppDispatch } from '@/hooks/useRedux';
 import { setUser } from '@/store/actions/userReducer';
-import { login } from '@/utils/api/userApi'
 import { useRouter } from 'next/navigation';
 import SubmitButton from './SubmitButton';
+import { registration } from '@/utils/api/userApi';
 
 
 
@@ -28,21 +28,32 @@ const RegistrationForm: React.FC<AuthProps> = ({ title, submitTitle, step, onSte
 
 
     const registerSubmit = async () => {
-        // if (email.value !== '' && password.value !== '' && username.value !== '') {
-        //     login(email.value, password.value)
-        //         .then((data) => {
-        //             dispatch(setUser(data.user))
-        //             router.push('/home')
-        //         })
-        //         .catch(e => setErrorMessage(e.response.data.message))
-        // } else {
-        //     setErrorMessage('Email and Password are required!')
-        // }
-        onStep(step + 1)
+        if (step < 3) {
+            if (step === 1 && email.value !== '') {
+                onStep(step + 1);
+                setErrorMessage('');
+              } else if (step === 1) {
+                setErrorMessage('Email is necessary');
+              } else if (step === 2 && username.value !== '') {
+                onStep(step + 1);
+                setErrorMessage('');
+              } else if (step === 2) {
+                setErrorMessage('Username is necessary');
+              }
+        } else {
+            registration(email.value, username.value, password.value)
+            .then(data => {
+                dispatch(setUser(data.user))
+                console.log(data.token)
+            })
+            .then(data => router.push('/home'))
+            .catch(e => setErrorMessage(e.response.data.message))
+        }
+
     }
 
     return (
-        <div className='flex flex-col items-start gap-4 border-b-[1px] border-solid border-b-[#D9DADC]'>
+        <div key={step} className='flex flex-col items-start gap-4 border-b-[1px] border-solid border-b-[#D9DADC]'>
             <h1 className='mt-4 mb-2 m-auto p-1 font-bold text-3xl border-b-[1px] border-solid border-black'>{title}</h1>
             {step === 1 &&
                 <>

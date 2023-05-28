@@ -1,6 +1,5 @@
 import { ITrack } from '@/types/types'
 import React from 'react'
-import Image from 'next/image'
 import { MdPlayArrow, MdPause } from 'react-icons/md'
 import styles from '../../app/track.module.scss'
 import { useImage } from '@/hooks/useImage'
@@ -38,7 +37,7 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   return (
     <article className={ `${styles.trackItem} ${activeTrack !== track? 'bg-[#181818]' : 'bg-[#242424]'}`} onClick={() => handleTrack(track)}>
        <div className='flex gap-4 w-full'>
-       <Image priority src={image.image} onError={image.handleError} width={80} height={80} alt='audio picture'/>
+       <img src={image.image} onError={image.handleError} width={80} height={80} alt='audio picture'/>
         <div className='flex flex-col text-white self-center'>
             <span className='text-sm'>{track.trackname}</span>
             <span className=''>{track.author.email}</span>

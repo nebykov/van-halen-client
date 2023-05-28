@@ -1,10 +1,22 @@
-import { IApiRequestUser } from "@/types/types";
+import { IApiRequestUser, IUser } from "@/types/types";
 import axios, { AxiosError } from "axios";
 
 
 export async function login(email: string, password: string): Promise<IApiRequestUser> {
     try {
         const { data } = await axios.post('http://localhost:5000/auth/login', { email: email, password: password })
+        localStorage.setItem('token', data.token)
+        return data
+    } catch (error) {
+        localStorage.removeItem('token')
+        throw error
+    }
+}
+
+
+export async function registration(email: string, username: string, password: string): Promise<IApiRequestUser> {
+    try {
+        const { data } = await axios.post('http://localhost:5000/auth/registration', { email: email, username: username, password: password })
         localStorage.setItem('token', data.token)
         return data
     } catch (error) {
@@ -26,6 +38,16 @@ export async function auth(): Promise<IApiRequestUser> {
     } catch (error) {
         localStorage.removeItem('token');
         throw error;
+    }
+}
+
+
+export async function becomeCreator(userId: string): Promise<IUser> {
+    try {
+        const { data } = await axios.post(`http://localhost:5000/users/roles/add/${userId}`, { role: 'AUTHOR' })
+        return data
+    } catch (error) {
+        throw error
     }
 }
 

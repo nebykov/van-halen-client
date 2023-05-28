@@ -1,5 +1,4 @@
 import NavBar from "@/components/Navigation/NavBar"
-import SideBar from "@/components/Navigation/SideBar"
 import Player from "@/components/Player/Player"
 
 export const metadata = {
