@@ -10,6 +10,15 @@ export interface ITrack {
   }
 
 
+  export interface IAlbum {
+    _id: string,
+    name: string,
+    author: IUser,
+    picture: string,
+    tracks: ITrack[]
+  }
+
+
 
   export interface IUser {
       _id: string,
@@ -33,6 +42,11 @@ export interface ITrack {
   export interface IGlovalSearch {
     author: IUser | null;
     tracks: ITrack[];
+  }
+
+  export interface IFeed {
+    tracks: ITrack[],
+    albums: IAlbum[]
   }
 
 

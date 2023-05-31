@@ -1,5 +1,4 @@
-import { ITrack } from "@/types/types"
-import axios from "axios"
+import { IAlbum, ITrack } from "@/types/types"
 
 export async function getTracks(): Promise<ITrack[]> {
   const data = await fetch('http://localhost:5000/tracks', {
@@ -24,6 +23,13 @@ export async function getTracks(): Promise<ITrack[]> {
 
 export async function getCreatedTracks(userId: string) {
   const data = await fetch(`http://localhost:5000/tracks/author/${userId}`)
+
+  return data.json()
+}
+
+
+export async function getAlbums(): Promise<IAlbum[]> {
+  const data = await fetch(`http://localhost:5000/albums`)
 
   return data.json()
 }

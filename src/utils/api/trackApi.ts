@@ -1,4 +1,4 @@
-import { ITrack } from "@/types/types"
+import { IAlbum, IFeed, ITrack } from "@/types/types"
 import axios from "axios"
 
 

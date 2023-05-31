@@ -1,6 +1,6 @@
 import AlbumHead from "@/components/Album/AlbumHead"
 import AlbumTrackList from "@/components/Album/AlbumTrackList"
-import { getCreatedTracks, getFavoriteTracks } from "@/utils/api/getTracks"
+import { getCreatedTracks } from "@/utils/api/getTracks"
 import { getUserById } from "@/utils/api/getUsers"
 
 type Params = {

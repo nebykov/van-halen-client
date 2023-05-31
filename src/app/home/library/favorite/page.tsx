@@ -13,7 +13,6 @@ export default function FavoritePage() {
   const [tracks, setTracks] = React.useState<ITrack[]>([])
 
   React.useEffect(() => {
-    console.log('Ochko')
     if(user !== null) {
       getFavoriteTracks(user._id)
       .then(data => setTracks(data))

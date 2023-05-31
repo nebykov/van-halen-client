@@ -28,6 +28,7 @@ export const navConstants: NavProps[] = [
 
 export enum defaultImage{
     TRACK = 'http://localhost:3000/defaultaudiopic.png',
-    USER = 'http://localhost:3000/usericon.png'
+    USER = 'http://localhost:3000/usericon.png',
+    ALBUM = 'http://localhost:3000/albumicon.jpg'
     
 }

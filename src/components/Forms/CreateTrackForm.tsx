@@ -9,8 +9,13 @@ import UploadFile from './Input/UploadFile'
 import { defaultImage } from '@/utils/constants'
 import TrackResult from './TrackResult'
 import ImageUpload from './ImageUpload'
+import { useAppSelector } from '@/hooks/useRedux'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 const CreateTrackForm = () => {
+  const router = useRouter()
+  const {user, isAuth} = useAppSelector(state => state.user)
   const trackName = useInput('')
   const [currentStep, setCurrentStep] = React.useState(1)
   const [picture, setPicture] = React.useState(null)
@@ -20,8 +25,14 @@ const CreateTrackForm = () => {
     if (currentStep < 4) {
       setCurrentStep(prev => prev + 1)
     } else {
-       const formData = new FormData()
-      
+       if (isAuth && user) {
+        const formData = new FormData()
+       formData.append('trackname', trackName.value)
+       formData.append('authorId', user?._id)
+       formData.append('picture', picture || '')
+       formData.append('audio', audio || '')
+       axios.post('http://localhost:5000/tracks', formData).then(data => router.push('/home')).catch(e => console.log(e))
+       }
     }
   }
 
