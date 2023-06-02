@@ -1,11 +1,11 @@
 import { ITrack } from '@/types/types'
 import React from 'react'
 import { MdPlayArrow, MdPause } from 'react-icons/md'
-import styles from '../../app/track.module.scss'
+import styles from '../../styles/feed.module.scss'
 import { useImage } from '@/hooks/useImage'
 import { defaultImage } from '@/utils/constants'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
-import { pauseTrack, playTrack, setPause, setTrack } from '@/store/actions/tracksReducer'
+import { pauseTrack, playTrack, setTrack } from '@/store/actions/tracksReducer'
 
 
 interface TrackItemProps {
@@ -36,11 +36,11 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
 
   return (
     <article className={ `${styles.trackItem} ${activeTrack !== track? 'bg-[#181818]' : 'bg-[#242424]'}`} onClick={() => handleTrack(track)}>
-       <div className='flex gap-4 w-full'>
-       <img src={image.image} onError={image.handleError} width={80} height={80} alt='audio picture'/>
-        <div className='flex flex-col text-white self-center'>
-            <span className='text-sm'>{track.trackname}</span>
-            <span className=''>{track.author.email}</span>
+       <div className={styles.contentBlock}>
+       <img src={image.image} onError={image.handleError} alt='audio picture'/>
+        <div className={styles.description}>
+            <span className={styles.trackName}>{track.trackname}</span>
+            <span className={styles.trackAuthor}>{track.author.email}</span>
         </div>
        </div>
        <div className={`${styles.playIconContainer} ${activeTrack === track? 'scale-100' : 'scale-0'}`} onClick={(e) => handlePause(e)}>

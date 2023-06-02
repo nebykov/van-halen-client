@@ -1,0 +1,89 @@
+.feedContainer {
+    @apply container m-auto pt-5;
+
+    .albumList {
+        @apply flex flex-wrap gap-7 m-auto p-5;
+
+        .albumCard {
+            @apply bg-[#181818] rounded-md overflow-hidden cursor-pointer duration-150;
+
+            &:hover {
+                @apply scale-110 opacity-80
+            }
+
+            img {
+                @apply w-40 h-40;
+            }
+
+            .cardContent {
+                @apply m-2 text-white;
+
+                h3 {
+                    @apply cursor-pointer hover:underline;
+                }
+
+                span {
+                    @apply text-sm text-[#b4b4b4] cursor-pointer hover:underline;
+                }
+            }
+        }
+    }
+
+    .trackList {
+       @apply flex flex-wrap gap-5 m-auto p-5;
+
+       .trackItem {
+            @apply flex hover:bg-[#282828] min-w-[480px] max-w-[580px] rounded-md overflow-hidden cursor-pointer duration-150;
+
+          &:hover .playIconContainer {
+             @apply scale-100;
+          }
+
+          .contentBlock {
+            @apply flex gap-4 w-full;
+
+            img {
+                @apply w-20 h-20;
+            }
+
+            .description {
+                @apply flex flex-col text-white self-center;
+
+                .trackName {
+                    @apply text-sm;
+                }
+
+                .trackAuthor {
+                    @apply text-sm text-[#b4b4b4] cursor-pointer hover:underline;
+                }
+            }
+          }
+
+    .playIconContainer {
+        @apply self-center justify-self-end mr-4 duration-150;
+
+        .active {
+            @apply scale-100
+        }
+    
+        .playIcon {
+            @apply active:scale-95 text-5xl;
+
+            &:hover {
+                @apply scale-110
+            }
+
+            &:active {
+                @apply scale-100
+            }
+        }
+    
+    }
+}
+    }
+}
+
+
+.feedTitle {
+    @apply text-3xl ml-3 font-bold text-white;
+}

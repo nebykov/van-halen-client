@@ -1,11 +1,7 @@
 import { IAlbum, ITrack } from "@/types/types"
 
 export async function getTracks(): Promise<ITrack[]> {
-  const data = await fetch('http://localhost:5000/tracks', {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    }
-  })
+  const data = await fetch('http://localhost:5000/tracks')
 
   return data.json()
 }
