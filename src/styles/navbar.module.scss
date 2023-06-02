@@ -1,0 +1,29 @@
+.navBar {
+    @apply h-20 w-full bg-[#181818] px-7 z-10 flex items-center;
+
+    .logoBar {
+       @apply flex items-center gap-2 bg-white 
+       p-2 rounded-md cursor-pointer duration-150;
+
+       &:hover {
+        @apply scale-110
+       }
+
+       &:active {
+        @apply scale-100;
+       }
+
+        h1 {
+            @apply font-bold text-black text-center; 
+        }
+
+        img {
+            @apply h-7 w-7;
+        }
+    }
+
+    .navControl {
+        @apply flex items-center h-full gap-2;
+        margin: 0 auto;
+    }
+}

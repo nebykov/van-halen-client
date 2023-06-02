@@ -60,22 +60,14 @@
           }
 
     .playIconContainer {
-        @apply self-center justify-self-end mr-4 duration-150;
+        @apply self-center justify-self-end mr-4 duration-150 text-5xl text-white;
 
-        .active {
-            @apply scale-100
+        &:hover {
+            @apply scale-110
         }
-    
-        .playIcon {
-            @apply active:scale-95 text-5xl;
 
-            &:hover {
-                @apply scale-110
-            }
-
-            &:active {
-                @apply scale-100
-            }
+        &:active {
+            @apply scale-100
         }
     
     }

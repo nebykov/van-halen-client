@@ -12,7 +12,9 @@ export default function AuthLayout({
 }) {
     return (
         <section>
+            <div className='flex items-center flex-col gap-5 w-[450px] mx-auto my-0'>
                 {children}
+            </div>
         </section>
     )
 }

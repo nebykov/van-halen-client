@@ -1,4 +1,4 @@
-
+import styles from '../../styles/forms.module.scss'
 
 export const metadata = {
     title: 'Registation',
@@ -11,13 +11,13 @@ export default function AuthLayout({
     children: React.ReactNode
 }) {
     return (
-        <section>
-            <main>
+        <>
             <header className={`flex items-center justify-center h-20 bg-white border-b-[1px] border-solid border-b-[#D9DADC]`}>
                 <h1 className="font-bold text-2xl">Van Halen Wave</h1>
             </header>
+            <section className={styles.formSection}>
                 {children}
-            </main>
-        </section>
+            </section>
+        </>
     )
 }

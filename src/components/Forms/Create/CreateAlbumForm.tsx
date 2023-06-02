@@ -1,14 +1,14 @@
-import { useInput } from '@/hooks/useInput'
-import { useRouter } from 'next/navigation'
 import React from 'react'
-import Stepper from './Stepper'
-import TrackResult from './TrackResult'
-import UploadFile from './Input/UploadFile'
-import ImageUpload from './ImageUpload'
-import SubmitButton from './SubmitButton'
-import Input from './Input/Input'
+import TrackResult from '../TrackResult'
+import UploadFile from '../Input/UploadFile'
+import ImageUpload from '../ImageUpload'
+import SubmitButton from '../SubmitButton'
+import Input from '../Input/Input'
 import axios from 'axios'
 import { useAppSelector } from '@/hooks/useRedux'
+import { useInput } from '@/hooks/useInput'
+import { useRouter } from 'next/navigation'
+import Stepper from '@/components/UI/Stepper'
 
 const CreateAlbumForm = () => {
     const router = useRouter()
@@ -40,7 +40,7 @@ const CreateAlbumForm = () => {
   
   
     return (
-      <div className='flex items-center flex-col gap-5 w-[450px] mx-auto my-0'>
+      <>
         <Stepper activeStep={currentStep} steps={3} />
         <h1 className='font-bold text-2xl mt-6'>Creating an Album</h1>
         {
@@ -56,7 +56,7 @@ const CreateAlbumForm = () => {
           <SubmitButton submitTitle='Previous' onSubmit={handlePrev} around={true} />
           <SubmitButton submitTitle={currentStep === 4? 'Upload' : 'Next'} onSubmit={handleNext} around={true} />
         </div>
-      </div>
+      </>
     )
 }
 

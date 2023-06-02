@@ -45,12 +45,12 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
        </div>
        <div className={`${styles.playIconContainer} ${activeTrack === track? 'scale-100' : 'scale-0'}`} onClick={(e) => handlePause(e)}>
         {activeTrack === track && !pause?
-         <MdPause fill='white' className={styles.playIcon}/>
+         <MdPause/>
          :
          activeTrack === track && pause?
-         <MdPlayArrow fill='white' className={styles.playIcon}/>
+         <MdPlayArrow/>
          :
-         <MdPlayArrow fill='white' className={styles.playIcon}/>}
+         <MdPlayArrow/>}
        </div>
     </article>
   )

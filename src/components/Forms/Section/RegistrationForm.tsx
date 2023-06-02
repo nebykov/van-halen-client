@@ -6,19 +6,18 @@ import { useInput } from '@/hooks/useInput';
 import { useAppDispatch } from '@/hooks/useRedux';
 import { setUser } from '@/store/actions/userReducer';
 import { useRouter } from 'next/navigation';
-import SubmitButton from './SubmitButton';
+import SubmitButton from '../SubmitButton';
 import { registration } from '@/utils/api/userApi';
 
 
 
 interface AuthProps {
-    title: string,
     submitTitle: string,
     step: number,
     onStep: (value: number) => void;
 }
 
-const RegistrationForm: React.FC<AuthProps> = ({ title, submitTitle, step, onStep }) => {
+const RegistrationForm: React.FC<AuthProps> = ({ submitTitle, step, onStep }) => {
     const router = useRouter()
     const dispatch = useAppDispatch()
     const username = useInput('')
@@ -53,23 +52,23 @@ const RegistrationForm: React.FC<AuthProps> = ({ title, submitTitle, step, onSte
     }
 
     return (
-        <div key={step} className='flex flex-col items-start gap-4 border-b-[1px] border-solid border-b-[#D9DADC]'>
-            <h1 className='mt-4 mb-2 m-auto p-1 font-bold text-3xl border-b-[1px] border-solid border-black'>{title}</h1>
+        <>
+            <h1>Registration</h1>
             {step === 1 &&
                 <>
-                    <h3 className={`ml-4 font-bold mt-4 text-xs`}>Email</h3>
+                    <h3>Email</h3>
                     <Input placeholder='Enter Your Email' type='text' value={email.value} onChange={email.onChange} />
                 </>
             }
             {step === 2 &&
                 <>
-                    <h3 className={`ml-4 font-bold mt-4 text-xs`}>Username</h3>
+                    <h3>Username</h3>
                     <Input placeholder='Enter Your Username' type='text' value={username.value} onChange={username.onChange} />
                 </>
             }
             {step === 3 &&
                 <>
-                    <h3 className={`ml-4 font-bold text-xs`}>Password</h3>
+                    <h3>Password</h3>
                     <Input placeholder='Password' type='password' value={password.value} onChange={password.onChange} />
                 </>
             }
@@ -78,7 +77,7 @@ const RegistrationForm: React.FC<AuthProps> = ({ title, submitTitle, step, onSte
 
             {errorMessage && <span className='self-end text-red-700 font-semibold text-lg'>{errorMessage}</span>}
             <SubmitButton onSubmit={registerSubmit} submitTitle={submitTitle} />
-        </div>
+        </>
     )
 }
 

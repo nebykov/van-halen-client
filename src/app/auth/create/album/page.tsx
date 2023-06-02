@@ -1,6 +1,6 @@
 'use client'
 
-import CreateAlbumForm from '@/components/Forms/CreateAlbumForm'
+import CreateAlbumForm from '@/components/Forms/Create/CreateAlbumForm'
 import React from 'react'
 
 const CreateAlbum = () => {

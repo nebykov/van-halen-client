@@ -1,32 +1,26 @@
 'use client'
 
-import RegistrationForm from '@/components/Forms/RegistrationForm';
-import Stepper from '@/components/Forms/Stepper';
-import { useRouter } from 'next/navigation';
+import FormFooter from '@/components/Forms/Footer/FormFooter';
+import RegistrationForm from '@/components/Forms/Section/RegistrationForm';
+import styles from '../../../styles/forms.module.scss'
 import React from 'react';
+import Stepper from '@/components/UI/Stepper';
 
 
 
 const Registration = () => {
-    const router = useRouter()
     const [currentStep, setCurrentStep] = React.useState(1)
 
 
     return (
-        <div>
+        <>
             <Stepper steps={3} activeStep={currentStep}/>
-            <div className='w-[450px] m-auto'>
-                <RegistrationForm title='Registration' submitTitle='Next' step={currentStep} onStep={(value) => setCurrentStep(value)}/>
-                <div className='flex flex-col gap-4 mt-4'>
-                    <h3 className='self-center'>Already have an account?</h3>
-                    <button
-                        onClick={() => router.push('/auth')}
-                        className='w-full bg-white p-3 border-[2px] hover:scale-105 duration-150 ease-in-out border-solid rounded-3xl border-[#D9DADC]'>
-                        LOG IN FOR VH WAVE
-                    </button>
-                </div>
+            <div className={styles.authForm}>
+            <RegistrationForm submitTitle='Next' step={currentStep} onStep={(value) => setCurrentStep(value)}/>
             </div>
-        </div>
+            <FormFooter href='/auth' title='Already have an account?' buttonTitle='LOG IN FOR VH WAVE'/>
+           
+        </>
     )
 }
 

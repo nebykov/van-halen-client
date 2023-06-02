@@ -7,6 +7,8 @@ import { auth } from "@/utils/api/userApi";
 import { setUser } from "@/store/actions/userReducer";
 import NavControl from "./NavControl";
 import NavUserSection from "./NavUserSection";
+import styles from '../../styles/navbar.module.scss'
+import Link from "next/link";
 
 
 const NavBar: React.FC = () => {
@@ -17,34 +19,44 @@ const NavBar: React.FC = () => {
   const { user, isAuth } = useAppSelector(state => state.user)
 
 
-    React.useEffect(() => {
-      setIsLoading(true)
-        if (!isAuth) {
-          auth()
-          .then(data => {
-            setIsLoading(false)
-            if(!user) {
-              dispatch(setUser(data.user))
-            }
-          })
-          .catch(e => {
-            setError(true)
-            alert(`error ${e}`)})
-        }
+  React.useEffect(() => {
+    setIsLoading(true)
+    if (!isAuth) {
+      auth()
+        .then(data => {
+          setIsLoading(false)
+          if (!user) {
+            dispatch(setUser(data.user))
+          }
+        })
+        .catch(e => {
+          setError(true)
+          alert(`error ${e}`)
+        })
+    } else {
+      setIsLoading(false)
+    }
 
-        setIsLoading(false)
-    }, [])
+  }, [])
 
-    if (error === true) redirect('/auth')
+  if (error === true) redirect('/auth')
 
 
   return (
-    <header className="h-20 w-full bg-[#181818] px-7 z-10" onClick={() => setActive(false)}>
-        <nav className='flex items-center h-full'>
-          <h1 className={`font-bold text-white text-center`}>Van Halen Wave</h1>
-          <NavControl/>
-          {!isLoading && user ? <NavUserSection active={active} onActive={setActive} user={user} key={user._id}/> : <span className="h-8 w-8 rounded-full bg-[#242424] animate-pulse"/>}
-        </nav>
+    <header className={styles.navBar} onClick={() => setActive(false)}>
+      <Link href='/home'>
+      <div className={styles.logoBar}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Van_Halen_logo.svg/1280px-Van_Halen_logo.svg.png" alt="" />
+        <h1>Van Halen Wave</h1>
+      </div>
+      </Link>
+      <ul className={styles.navControl}>
+        <NavControl />
+      </ul>
+      {!isLoading && user ?
+        <NavUserSection active={active} onActive={setActive} user={user} key={user._id} />
+        :
+        <span className="h-8 w-8 rounded-full bg-[#242424] animate-pulse" />}
     </header>
   )
 }

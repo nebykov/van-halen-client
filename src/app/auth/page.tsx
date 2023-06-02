@@ -1,29 +1,19 @@
 'use client'
 
-import AuthForm from '@/components/Forms/authForm';
-import { useRouter } from 'next/navigation';
+import FormFooter from '@/components/Forms/Footer/FormFooter';
+import AuthForm from '@/components/Forms/Section/authForm';
+import styles from '../../styles/forms.module.scss'
 
 
 
-const Auth = () => {
-    const router = useRouter() 
-
-    return (
-        <section>
-            <div className='w-[450px] m-auto'>
-            <img src='http://localhost:3000/van-halen.png' alt='Logo' height={44} width={450} className='mt-5' />
-                  <AuthForm title='Authorization' submitTitle='Log In'/>
-                <div className='flex flex-col gap-4 mt-4'>
-                    <h3 className='self-center'>Don't have an account?</h3>
-                     <button
-                        onClick={() => router.push('/auth/registration')}
-                        className='w-full bg-white p-3 border-[2px] hover:scale-105 active:scale-100 duration-150 ease-in-out border-solid rounded-3xl border-[#D9DADC]'>
-                        SIGN UP FOR VH WAVE
-                    </button>
-                </div>
-            </div>
-        </section>
-    )
-}
+const Auth = () => (
+    <>
+        <img src='http://localhost:3000/van-halen.png' alt='Logo' height={44} width={450} className='mt-5' />
+        <div className={styles.authForm}>
+            <AuthForm />
+        </div>
+        <FormFooter href='/auth/registration' title='Don`t Have An Account?' buttonTitle='SIGN UP FOR VH WAVE' />
+    </>
+)
 
 export default Auth;

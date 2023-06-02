@@ -2,16 +2,15 @@
 
 import { useInput } from '@/hooks/useInput'
 import React from 'react'
-import Stepper from './Stepper'
 import SubmitButton from './SubmitButton'
 import Input from './Input/Input'
 import UploadFile from './Input/UploadFile'
-import { defaultImage } from '@/utils/constants'
 import TrackResult from './TrackResult'
 import ImageUpload from './ImageUpload'
 import { useAppSelector } from '@/hooks/useRedux'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
+import Stepper from '@/components/UI/Stepper'
 
 const CreateTrackForm = () => {
   const router = useRouter()
@@ -44,7 +43,7 @@ const CreateTrackForm = () => {
 
 
   return (
-    <div className='flex items-center flex-col gap-5 w-[450px] mx-auto my-0'>
+    <>
       <Stepper activeStep={currentStep} steps={4} />
       <h1 className='font-bold text-2xl mt-6'>Creating Track</h1>
       {
@@ -65,7 +64,7 @@ const CreateTrackForm = () => {
         <SubmitButton submitTitle='Previous' onSubmit={handlePrev} around={true} />
         <SubmitButton submitTitle={currentStep === 4? 'Upload' : 'Next'} onSubmit={handleNext} around={true} />
       </div>
-    </div>
+    </>
   )
 }
 
