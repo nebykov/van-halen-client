@@ -1,8 +1,6 @@
 import AlbumHead from "@/components/Album/AlbumHead"
 import AlbumTrackList from "@/components/Album/AlbumTrackList"
 import { getAlbum } from "@/utils/api/albumApi"
-import { getCreatedTracks } from "@/utils/api/getTracks"
-import { getUserById } from "@/utils/api/getUsers"
 
 type Params = {
     params: {
@@ -13,8 +11,6 @@ type Params = {
 
 export default async function AlbumPage({params: {albumId}}: Params) {
        const album = await getAlbum(albumId)
-  
-  
     return (
       <>
           <div className="mx-[28px]">

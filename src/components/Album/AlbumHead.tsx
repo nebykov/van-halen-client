@@ -23,7 +23,9 @@ const AlbumHead: React.FC<AlbumHeadProps> = ({ user, title, userPage, image, alb
                 {userPage ?
                     <img src={imgSrc.image} onError={imgSrc.handleError} alt='User' className='h-full w-full' />
                     : image ? <img src={albumImage.image} onError={albumImage.handleError} alt='Album' className='h-full w-full object-cover' /> :
-                        'Favorite'
+                        <span>
+                            Favorite
+                        </span>
                 }
             </div>
             <div className={styles.albumDescription}>

@@ -2,6 +2,7 @@
 
 import AlbumTrackItem from './AlbumTrackItem'
 import styles from '../../styles/album.module.scss'
+import React from 'react'
 import { ITrack } from '@/types/types'
 
 
@@ -19,8 +20,12 @@ const AlbumTrackList: React.FC<AlbumTrackListProps> = ({tracks}) => {
                         <div>#</div>
                         <div>name</div>
                     </div>
+                   {window.screen.width >= 400 &&
+                   <>
                     <div>album</div>
                     <div>date</div>
+                   </>
+                   }
                     <div className={styles.columnLike}>liked</div>
                 </div>
             </div>

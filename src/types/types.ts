@@ -5,8 +5,8 @@ export interface ITrack {
     _id: string,
     picture: string,
     audio: string,
-    date: string
-  
+    date: string,
+    album: IAlbum
   }
 
 

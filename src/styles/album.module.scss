@@ -48,16 +48,49 @@
 
             &:hover .trackNameBox .playArrow {
                 @apply translate-y-[-50%] opacity-100;
+                background-color: rgba(235, 235, 235, 0.363);
             }
 
             .trackNameBox {
                 @apply flex items-center gap-4;
 
                 .playArrow {
-                    @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[0] text-2xl opacity-0 duration-150;
+                    @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[0] opacity-0 duration-150;
                 }
             }
 
         }
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .albumHeader {
+        @apply flex items-center h-20 mb-0;
+    
+        .imageCard {
+            @apply hidden;
+        }
+    
+        .albumDescription {
+            @apply flex flex-col h-full justify-center ml-2;
+    
+            h1 {
+                @apply text-sm font-bold mb-3 text-white;
+            }
+    
+            .userCard {
+                @apply max-w-xs flex items-center rounded-md p-3 bg-[#282828] gap-2;
+            }
+        }
+    }
+
+    .albumTrackColumns {
+        @apply grid grid-cols-2;
+    }
+
+    .albumTrackItem {
+        @apply grid grid-cols-2;
     }
 }

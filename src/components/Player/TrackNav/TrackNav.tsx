@@ -18,7 +18,7 @@ interface TrackNavProps {
 const TrackNav: React.FC<TrackNavProps> = ({handlePause, isLoading}) => {
   const { pause } = useAppSelector(state => state.track)
   return (
-    <div className='flex justify-center items-center mt-2' onClick={handlePause}>
+    <div className='flex justify-center items-center mt-2 max-sm:mt-4 max-sm:mr-2 justify-self-center' onClick={handlePause}>
         <MdSkipPrevious className='w-8 h-8 cursor-pointer fill-[#ffffffb4]'/>
         { 
          isLoading? 

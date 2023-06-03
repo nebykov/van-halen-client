@@ -84,11 +84,13 @@ const Player: React.FC = () => {
                     <TrackControl track={track} />
                     <div className='justify-self-center items-center flex-col'>
                         <TrackNav handlePause={handlePause} isLoading={isLoading}/>
-                        <TrackProgress width='w-[400px]' left={currentTime} right={duration} onVolume={(e) => changeCurrentTime(e)}/>
+                        {window.screen.width !<= 300 && <TrackProgress width='w-[400px]' left={currentTime} right={duration} onVolume={(e) => changeCurrentTime(e)}/>}
                     </div>
+                    {window.screen.width !<= 300 &&
                     <div className='mr-8 flex flex-row justify-center'>
-                        <TrackProgress width='w-[100px]' left={volume} right={100} onVolume={(e) => changeVolume(e) } isVolume/>
-                    </div>
+                    <TrackProgress width='w-[100px]' left={volume} right={100} onVolume={(e) => changeVolume(e) } isVolume/>
+                </div>
+                    }
                 </div>}
 
         </>

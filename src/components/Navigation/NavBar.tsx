@@ -31,13 +31,14 @@ const NavBar: React.FC = () => {
         })
         .catch(e => {
           setError(true)
+          setIsLoading(false)
           alert(`error ${e}`)
         })
-    } else {
-      setIsLoading(false)
-    }
+      }
 
-  }, [])
+      setIsLoading(false)
+
+  }, [user])
 
   if (error === true) redirect('/auth')
 
@@ -47,7 +48,7 @@ const NavBar: React.FC = () => {
       <Link href='/home'>
       <div className={styles.logoBar}>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Van_Halen_logo.svg/1280px-Van_Halen_logo.svg.png" alt="" />
-        <h1>Van Halen Wave</h1>
+        <h1 className={`${window.screen.width <= 400 && 'hidden'}`}>Van Halen Wave</h1>
       </div>
       </Link>
       <ul className={styles.navControl}>

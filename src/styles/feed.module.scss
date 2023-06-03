@@ -33,7 +33,7 @@
        @apply flex flex-wrap gap-5 m-auto p-5;
 
        .trackItem {
-            @apply flex hover:bg-[#282828] min-w-[480px] max-w-[580px] rounded-md overflow-hidden cursor-pointer duration-150;
+            @apply flex hover:bg-[#282828] min-w-[280px] max-w-[580px] rounded-md overflow-hidden cursor-pointer duration-150;
 
           &:hover .playIconContainer {
              @apply scale-100;
@@ -59,8 +59,12 @@
             }
           }
 
+          &:hover .playIconContainer {
+            @apply scale-100
+          }
+
     .playIconContainer {
-        @apply self-center justify-self-end mr-4 duration-150 text-5xl text-white;
+        @apply self-center justify-self-end mr-4 duration-150;
 
         &:hover {
             @apply scale-110
@@ -78,4 +82,13 @@
 
 .feedTitle {
     @apply text-3xl ml-3 font-bold text-white;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .trackList {
+        .trackItem {
+            width: 100%;
+        }
+    }
 }
