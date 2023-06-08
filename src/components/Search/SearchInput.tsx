@@ -14,7 +14,7 @@ const SearchInput: React.FC<SearchInputProps> = ({onSearch}) => {
  
   return (
     <input
-    className='bg-[#242424] w-[450px] placeholder:text-[13px] text-white h-8 p-5 outline-none ml-[28px] focus:outline-slate-400 hover:outline-slate-700 rounded-3xl' 
+    className='bg-[#242424] max-w-[450px] placeholder:text-[13px] text-white h-8 p-5 outline-none ml-[28px] focus:outline-slate-400 hover:outline-slate-700 rounded-3xl' 
     placeholder='What Do You Want To Listen To?' 
     value={query}
     onChange={(e) => handleSearchInput(e)}

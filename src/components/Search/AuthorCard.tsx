@@ -1,6 +1,7 @@
 import { useImage } from '@/hooks/useImage'
 import { IUser } from '@/types/types'
 import { defaultImage } from '@/utils/constants'
+import styles from '../../styles/search.module.scss'
 import React from 'react'
 
 interface AuthorCardProps { 
@@ -10,7 +11,7 @@ interface AuthorCardProps {
 const AuthorCard: React.FC<AuthorCardProps> = ({ author }) => {
   const imgSrc = useImage(author?.avatar, defaultImage.USER)
   return (
-    <div className='w-96 min-h-52 bg-[#242424] rounded-lg flex flex-col p-4 gap-4'>
+    <div className={styles.authorCard}>
       <img src={imgSrc.image} onError={imgSrc.handleError} alt="Author" className='w-20' />
       {author?.username ?
         <>

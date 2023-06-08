@@ -6,6 +6,7 @@ import SearchInput from '@/components/Search/SearchInput'
 import TrackListCard from '@/components/Search/TrackListCard'
 import { ITrack, IUser } from '@/types/types'
 import { globalSearch } from '@/utils/api/searchApi'
+import styles from '../../../styles/search.module.scss'
 import React from 'react'
 
 const Search = () => {

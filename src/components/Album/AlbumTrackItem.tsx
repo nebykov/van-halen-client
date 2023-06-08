@@ -46,8 +46,8 @@ const AlbumTrackItem: React.FC<AlbumTrackItemProps> = ({index, track}) => {
                             <PlayButton activeTrack={activeTrack} onPause={handlePause} pause={pause} track={track} size='text-2xl'/>
                         </div>
                     </div>
-                    <div className='flex flex-col w-6'>
-                        <span className='text-sm'>{track.trackname}</span>
+                    <div className={styles.trackInformation}>
+                        <span className={styles.trackName}>{track.trackname}</span>
                         <span className='text-xs'>{track?.author?.username ? track.author.username : track.author.email}</span>
                     </div>
                 </div>

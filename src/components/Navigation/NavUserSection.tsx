@@ -50,7 +50,7 @@ const NavUserSection: React.FC<NavUserSectionProps> = ({ active, onActive, user 
                     onActive(!active)
                 }
                 } />
-            {active && <div className="flex flex-col absolute right-0 mt-2">
+            {active && <div className="flex flex-col absolute right-0 mt-2 z-50">
                 <ul onClick={(e) => { e.stopPropagation() }}
                     className="bg-[#282828] text-slate-100 w-52 rounded-lg p-2 overflow-hidden">
                     <li className="p-1 border-b border-solid border-b-slate-400">{user?.email}</li>

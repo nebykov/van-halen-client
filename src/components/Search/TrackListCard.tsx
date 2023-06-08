@@ -33,10 +33,10 @@ const TrackListCard: React.FC<TrackListProps> = ({track}) => {
   }
 
   return (
-    <div className='bg-inherit mr-5 p-2 cursor-pointer group/item duration-150 hover:bg-[#242424] rounded-md' onClick={() => handleTrack(track)}>
+    <div className='bg-inherit mr-5 p-2 cursor-pointer group/item duration-150 hover:bg-[#242424] rounded-md z-10' onClick={() => handleTrack(track)}>
       <div className='flex gap-2'>
         <div className='relative'>
-        <img src={imgSrc.image} onError={imgSrc.handleError} alt="Track picture" className='w-10'/>
+        <img src={imgSrc.image} onError={imgSrc.handleError} alt="Track picture" className='w-10 z-10'/>
         {/* <MdPlayArrow fill='black' className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[0] text-2xl opacity-0 group-hover/item:opacity-100  group-hover/item:translate-y-[-50%] duration-150'/> */}
         <div className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[0] text-2xl opacity-0 group-hover/item:opacity-100  group-hover/item:translate-y-[-50%] duration-150'>
         <PlayButton activeTrack={activeTrack} pause={pause} track={track} size='text-2xl' onPause={handlePause}/>

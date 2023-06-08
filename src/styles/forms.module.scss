@@ -1,7 +1,8 @@
 
 
 .formSection {
-    width: 450px;
+    @apply p-4;
+    max-width: 450px;
     margin: 0 auto;
 
     .authForm {

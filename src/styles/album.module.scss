@@ -41,7 +41,7 @@
     }
 
     .albumTrackItem {
-        @apply grid grid-cols-4 rounded-md text-white font-semibold px-5 h-14 bg-inherit hover:bg-[#242424] cursor-pointer duration-150 items-center;
+        @apply grid grid-cols-4 rounded-md text-white font-semibold px-5 h-14 bg-inherit hover:bg-[#242424] cursor-pointer duration-150 items-center mb-5;
 
         .albumTrackInfo {
             @apply col-start-1 col-end-3 flex gap-4 items-center;
@@ -56,6 +56,16 @@
 
                 .playArrow {
                     @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[0] opacity-0 duration-150;
+                }
+
+                .trackInformation {
+                    @apply flex flex-col w-6 h-10;
+
+                    .trackName {
+                        font-size: 10px;
+                        font-style: normal;
+                        display: inline-block;
+                    }
                 }
             }
 

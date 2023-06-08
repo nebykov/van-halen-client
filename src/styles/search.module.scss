@@ -1,0 +1,11 @@
+.authorCard {
+    @apply w-96 h-52 bg-[#242424] rounded-lg flex flex-col p-4 gap-4;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .authorCard {
+        @apply w-auto h-full bg-[#242424] rounded-lg flex flex-col p-4 gap-4;
+    }
+}
